@@ -69,7 +69,7 @@ public class NotionPlugin
                         {
                             Text = new Text
                             {
-                                Content = content.Length > 2000 ? content.Substring(0, 2000) + "..." : content
+                                Content = content.Length > 2000 ? content.Substring(0, 1997) + "..." : content
                             }
                         }
                     }
@@ -147,7 +147,7 @@ public class NotionPlugin
                             new
                             {
                                 type = "text",
-                                text = new { content = content.Length > 2000 ? content.Substring(0, 2000) + "..." : content }
+                                text = new { content = content.Length > 2000 ? content.Substring(0, 1997) + "..." : content }
                             }
                         }
                     }

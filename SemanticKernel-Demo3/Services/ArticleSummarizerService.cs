@@ -1,6 +1,5 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
-using SemanticKernel_Demo3;
 using SemanticKernel_Demo3.Plugins;
 
 namespace SemanticKernel_Demo3.Services;
@@ -34,7 +33,7 @@ public class ArticleSummarizerService
 
             // Step 1: Extract article content
             var extractedContent = await _kernel.InvokeAsync(
-                _webScrapingPlugin[nameof(WebScrapingPlugin.ExtractArticleContentAsync)],
+                _webScrapingPlugin["ExtractArticleContent"],
                 new KernelArguments { ["url"] = articleUrl }
             );
 
@@ -47,20 +46,21 @@ public class ArticleSummarizerService
 
             // Step 2: Create summarization function
             var summaryFunction = _kernel.CreateFunctionFromPrompt(@"
-You are an expert at creating concise, well-structured summaries of articles.
+                You are an expert at creating concise, well-structured summaries of articles.
 
-Please create a comprehensive summary of the following article that includes:
-1. A brief overview (2-3 sentences)
-2. Key points (3-5 bullet points)
-3. Main conclusions or takeaways
-4. Any important quotes or statistics mentioned
+                Please create a comprehensive summary of the following article that includes:
+                1. A brief overview (2-3 sentences)
+                2. Key points (3-5 bullet points)
+                3. Main conclusions or takeaways
+                4. Any important quotes or statistics mentioned
 
-Make the summary professional and easy to read.
+                IMPORTANT: Keep the entire summary under 2000 characters to ensure it fits within system limits.
+                Make the summary professional and easy to read.
 
-Article Content:
-{{$article_content}}
+                Article Content:
+                {{$article_content}}
 
-Summary:");
+                Summary:");
 
             // Step 3: Generate summary
             _logger.LogInformation("Generating AI summary...");
@@ -78,7 +78,7 @@ Summary:");
             // Step 5: Create Notion note
             _logger.LogInformation("Creating Notion note...");
             var notionPageId = await _kernel.InvokeAsync(
-                _notionPlugin[nameof(NotionPlugin.CreateNoteAsync)],
+                _notionPlugin["CreateNote"],
                 new KernelArguments
                 {
                     ["title"] = noteTitle,

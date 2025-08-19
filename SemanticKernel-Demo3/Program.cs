@@ -49,16 +49,29 @@ public class Program
         var summarizerService = host.Services.GetRequiredService<ArticleSummarizerService>();
         var notionConfig = host.Services.GetRequiredService<IOptions<NotionConfig>>().Value;
         
-        var articleUrl = "https://www.anthropic.com/engineering/claude-code-best-practices"; // Replace with actual URL
-        var databaseId = notionConfig.DefaultDatabaseId; // Uses default from config
+        // Get URL from command line args or prompt user
+        string articleUrl;
+        if (args.Length > 0 && !string.IsNullOrWhiteSpace(args[0]))
+        {
+            articleUrl = args[0];
+            Console.WriteLine($"Using URL from command line: {articleUrl}");
+        }
+        else
+        {
+            Console.Write("Enter the article URL to summarize: ");
+            articleUrl = Console.ReadLine()?.Trim();
+            
+            if (string.IsNullOrWhiteSpace(articleUrl))
+            {
+                Console.WriteLine("No URL provided. Exiting.");
+                return;
+            }
+        }
+        
+        var databaseId = notionConfig.DefaultDatabaseId;
         
         try
         {
-            var notionPlugin = host.Services.GetRequiredService<NotionPlugin>();
-            var testPageId = await notionPlugin.CreateNoteAsync("Test Note", "This is a test note", databaseId);
-            Console.WriteLine($"Test page created: {testPageId}");
-            
-            // If test succeeds, try the full workflow
             await summarizerService.SummarizeArticleToNotionAsync(articleUrl, databaseId);
             Console.WriteLine("Article successfully summarized and saved to Notion!");
         }
