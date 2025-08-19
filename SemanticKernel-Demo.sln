@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel-Demo", "SemanticKernel-Demo\SemanticKernel-Demo.csproj", "{451BAF4E-FFE0-446D-901A-206DA6388D81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel-Demo3", "SemanticKernel-Demo3\SemanticKernel-Demo3.csproj", "{86BFE3A5-BC8F-4E6B-BD1C-34DEA45AA3C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel-Demo1", "SemanticKernel-Demo1\SemanticKernel-Demo1.csproj", "{478D5BB9-154D-41D8-842A-4565CE78B214}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernel-Demo2", "SemanticKernel-Demo2\SemanticKernel-Demo2.csproj", "{97E80E34-C0A0-44A7-A39D-27DF7451D23D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{451BAF4E-FFE0-446D-901A-206DA6388D81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{451BAF4E-FFE0-446D-901A-206DA6388D81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{451BAF4E-FFE0-446D-901A-206DA6388D81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{451BAF4E-FFE0-446D-901A-206DA6388D81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86BFE3A5-BC8F-4E6B-BD1C-34DEA45AA3C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86BFE3A5-BC8F-4E6B-BD1C-34DEA45AA3C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86BFE3A5-BC8F-4E6B-BD1C-34DEA45AA3C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86BFE3A5-BC8F-4E6B-BD1C-34DEA45AA3C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{478D5BB9-154D-41D8-842A-4565CE78B214}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{478D5BB9-154D-41D8-842A-4565CE78B214}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{478D5BB9-154D-41D8-842A-4565CE78B214}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{478D5BB9-154D-41D8-842A-4565CE78B214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97E80E34-C0A0-44A7-A39D-27DF7451D23D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97E80E34-C0A0-44A7-A39D-27DF7451D23D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97E80E34-C0A0-44A7-A39D-27DF7451D23D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97E80E34-C0A0-44A7-A39D-27DF7451D23D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
