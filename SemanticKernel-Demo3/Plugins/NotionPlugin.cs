@@ -6,7 +6,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.SemanticKernel;
 using Notion.Client;
 
-namespace SemanticKernel_Demo3;
+namespace SemanticKernel_Demo3.Plugins;
 
 public class NotionPlugin
 {

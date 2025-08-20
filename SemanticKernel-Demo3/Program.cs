@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -22,21 +23,23 @@ public class Program
             builder.Configuration.GetSection(NotionConfig.SectionName));
         builder.Services.Configure<WebScrapingConfig>(
             builder.Configuration.GetSection(WebScrapingConfig.SectionName));
+        builder.Services.Configure<AIServiceConfig>(
+            builder.Configuration.GetSection(AIServiceConfig.SectionName));
         
         // Add Semantic Kernel services
         builder.Services.AddKernel();
         
-        // Configure OpenAI from appsettings.json (section: "OpenAI")
-        var openAiSection = builder.Configuration.GetSection("OpenAI");
-        var openAiApiKey = openAiSection["ApiKey"];
-        var openAiModel = openAiSection["Model"] ?? "gpt-4o-mini";
-        if (string.IsNullOrWhiteSpace(openAiApiKey))
+        // Configure OpenAI from appsettings.json via AIServiceConfig
+        var aiConfig = builder.Configuration
+            .GetSection(AIServiceConfig.SectionName)
+            .Get<AIServiceConfig>() ?? new AIServiceConfig();
+        if (string.IsNullOrWhiteSpace(aiConfig.ApiKey))
         {
             throw new InvalidOperationException("OpenAI:ApiKey not configured in appsettings.json");
         }
         builder.Services.AddOpenAIChatCompletion(
-            modelId: openAiModel,
-            apiKey: openAiApiKey
+            modelId: aiConfig.Model,
+            apiKey: aiConfig.ApiKey
         );
         
         // Register plugins and services

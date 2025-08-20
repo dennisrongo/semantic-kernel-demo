@@ -1,5 +1,4 @@
 ﻿using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Microsoft.Extensions.Configuration;
 
 var config = new ConfigurationBuilder()
@@ -13,5 +12,27 @@ var kernel = Kernel.CreateBuilder()
     .AddOpenAIChatCompletion(model, apiKey)
     .Build();
 
-var result = await kernel.InvokePromptAsync("What is the capital of France?");
-Console.WriteLine(result);
+Console.WriteLine("Semantic Kernel Demo - Interactive Chat");
+Console.WriteLine("Type your questions (or 'exit' to quit):");
+Console.WriteLine();
+
+while (true)
+{
+    Console.Write("You: ");
+    var userInput = Console.ReadLine();
+    
+    if (string.IsNullOrWhiteSpace(userInput) || userInput.ToLower() == "exit")
+        break;
+    
+    try
+    {
+        var result = await kernel.InvokePromptAsync(userInput);
+        Console.WriteLine($"AI: {result}");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error: {ex.Message}");
+    }
+    
+    Console.WriteLine();
+}
